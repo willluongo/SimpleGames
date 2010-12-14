@@ -1,9 +1,11 @@
+=begin rdoc
+This module abstracts away all but the simplest parts of a 2D game to aid children in developing games with Ruby
+
+Copyright (c) 2010 Will Luongo
+Licensed under the MIT license
+=end
 module SimpleGames
-# This module abstracts away all but the simplest parts of a 2D game
-# intended to aid children in developing games with Ruby
-#--
-# Copyright (c) 2010 Will Luongo
-# Licensed under the MIT license
+
 require "rubygems"
 require "gosu"
 
