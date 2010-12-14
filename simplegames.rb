@@ -6,7 +6,7 @@ include Gosu
 class Sprite
   attr_accessor :x, :y
   
-  def initialize(x, y, image, target_window)
+  def initialize(image, target_window, x = 0, y = 0)
     begin
       @image = Image.new(target_window, image.to_s, false)
     rescue RuntimeError
@@ -21,7 +21,7 @@ end
 
 class Screen < Gosu::Window
   
-  def initialize (height, width, fullscreen, title)
+  def initialize (height = 800, width = 600, fullscreen = false, title = "A Simple Game")
     super(height,width,fullscreen)
     self.caption = title
   end
