@@ -13,7 +13,6 @@ module SimpleGames
   
   include Gosu
   
-$sprites = Array.new
 =begin rdoc
 A Sprite object is a simple flat image that you can move around the screen.
 Common applications for sprites include players, enemies, bullets, and scenary.
@@ -30,7 +29,7 @@ Common applications for sprites include players, enemies, bullets, and scenary.
       end
       @x = x
       @y =y
-      $sprites.push self
+      target_window.sprites.push self
     end
     
   
@@ -48,14 +47,15 @@ The Screen object is the main view into the world of the game.
 Typically there will only be one of these per game.
 =end
   class Screen < Gosu::Window
-    
+    attr_accessor :sprites
     def initialize (width = 800, height = 600, fullscreen = false, title = "A Simple Game")
       super(width,height,fullscreen)
       @height = height
       @width = width
       self.caption = title
+      @sprites = Array.new
       @font = Font.new(self, "monospace", 40)
-      
+
     end
     
 =begin rdoc
@@ -102,7 +102,7 @@ It takes a single bool as an argument, but by default there is no "gravity"
     end
     
     def draw
-        $sprites.each { |sprite| sprite.draw }
+        @sprites.each { |sprite| sprite.draw }
     end
     
     
