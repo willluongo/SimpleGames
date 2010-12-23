@@ -71,15 +71,7 @@ It takes a single bool as an argument, but by default there is no "gravity"
     end
     
     def update
-      # Perform the physics steps first
-      # SUBSTEPS.times do
-        ## Do Physics tasks here.  Collisions, forces from the environment, etc.
-        
-        # This tells chipmunk to calculate everything in the space for DTIME time.
-       # @space.step(DTIME)
-      
-      ## Do Game Logic tasks here. See the Gosu Wiki (RubyChipmunkIntegration) for
-      ## more details on what you might want to put here instead of above.
+
       if button_down? Gosu::Button::KbLeft or button_down? Gosu::Button::GpLeft then
         left_button
       end
@@ -107,19 +99,19 @@ It takes a single bool as an argument, but by default there is no "gravity"
     
     
     def down_button
-      # Does nothing - should be overridden by progam
+      raise NotImplementedError, 'You need to make sure you implement the down_button method'
     end
 
     def up_button
-      # Does nothing - should be overridden by progam
+      raise NotImplementedError, 'You need to make sure you implement the up_button method'
     end
 
     def right_button
-      # Does nothing - should be overridden by progam
+      raise NotImplementedError,'You need to make sure you implement the right_button method'
     end
 
     def left_button
-      # Does nothing - should be overridden by progam
+      raise NotImplementError, 'You need to make sure you implement the left_button method'
     end
     
   end
