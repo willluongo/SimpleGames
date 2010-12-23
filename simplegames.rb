@@ -49,9 +49,13 @@ Typically there will only be one of these per game.
 =end
   class Screen < Gosu::Window
     
-    def initialize (height = 800, width = 600, fullscreen = false, title = "A Simple Game")
-      super(height,width,fullscreen)
+    def initialize (width = 800, height = 600, fullscreen = false, title = "A Simple Game")
+      super(width,height,fullscreen)
+      @height = height
+      @width = width
       self.caption = title
+      @font = Font.new(self, "monospace", 40)
+      
     end
     
 =begin rdoc
