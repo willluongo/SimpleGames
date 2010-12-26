@@ -19,18 +19,22 @@ Common applications for sprites include players, enemies, bullets, and scenary.
 =end
   class Sprite
     attr_accessor :x, :y
+    attr_reader :height, :width
     
-    def initialize(image, target_window, x = 0, y = 0) # :
+    def initialize(name, image, target_window, x = 0, y = 0) # :
       begin
         @image = Image.new(target_window, image.to_s, false)
       rescue RuntimeError
-        puts "Image file is does not exist. No Sprites were created."
+        puts "Image file #{image} does not exist. No Sprites were created."
         exit
       end
+      @height = @image.height
+      @width = @image.width
       @x = x
       @y =y
-      target_window.sprites.push self
+      target_window.sprites[name] = self
     end
+    
     
   
 =begin rdoc
@@ -53,7 +57,7 @@ Typically there will only be one of these per game.
       @height = height
       @width = width
       self.caption = title
-      @sprites = Array.new
+      @sprites = Hash.new
       @font = Font.new(self, "monospace", 40)
 
     end
@@ -94,7 +98,33 @@ It takes a single bool as an argument, but by default there is no "gravity"
     end
     
     def draw
-        @sprites.each { |sprite| sprite.draw }
+      @sprites.each_value { |sprite| sprite.draw }
+    end
+    
+    def collide
+      @sprites.each { |main_name, main_sprite|
+        @sprites.each { |name, sprite|
+          if main_name != name
+            if distance(main_sprite.x, main_sprite.y, sprite.x, sprite.y) < 50 
+              # puts "#{main_name} and #{name} collided!"
+              return [main_name, name]
+            else
+              # puts "#{main_name} and #{name} failed to collide."
+              # return [false, false]
+            end
+
+          end
+        }
+      }
+      return [false, false]
+    end
+    
+    def collision(target_one, target_two)
+      if distance(@sprites[target_one].x, @sprites[target_one].y, @sprites[target_two].x, @sprites[target_two].y) < 50
+        return true
+      end
+      return false
+      
     end
     
     
@@ -117,4 +147,3 @@ It takes a single bool as an argument, but by default there is no "gravity"
   end
 
 end
-
