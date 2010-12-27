@@ -55,9 +55,9 @@ class MyScreen < Screen
   end
 end
 screen = MyScreen.new
-Sprite.new(:ship, "forward.png", screen)
+Sprite.new(:ship, "forward.png", screen, 0, 0, 50, 50)
 Sprite.new(:asteroid, "asteroid.png", screen,800,rand(600))
-puts "#{screen.sprites[:ship].height} high and #{screen.sprites[:ship].width}"
-puts "#{screen.sprites[:asteroid].height} high and #{screen.sprites[:asteroid].width}"
+puts "#{screen.sprites[:ship].bounding_height} high and #{screen.sprites[:ship].bounding_width}"
+puts "#{screen.sprites[:asteroid].bounding_height} high and #{screen.sprites[:asteroid].bounding_width}"
 
 screen.show

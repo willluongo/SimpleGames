@@ -19,17 +19,20 @@ Common applications for sprites include players, enemies, bullets, and scenary.
 =end
   class Sprite
     attr_accessor :x, :y
-    attr_reader :height, :width
+    attr_reader :bounding_height, :bounding_width
     
-    def initialize(name, image, target_window, x = 0, y = 0) # :
+    def initialize(name, image, target_window, x = 0, y = 0, bounding_width = nil, bounding_height = nil) # :
       begin
         @image = Image.new(target_window, image.to_s, false)
       rescue RuntimeError
         puts "Image file #{image} does not exist. No Sprites were created."
         exit
       end
-      @height = @image.height
-      @width = @image.width
+      bounding_height && @bounding_height = bounding_height
+      bounding_width && @bounding_width = bounding_width
+      bounding_height || @bounding_height = @image.height
+      bounding_width || @bounding_width = @image.width
+      
       @x = x
       @y =y
       target_window.sprites[name] = self
