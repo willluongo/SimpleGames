@@ -123,11 +123,22 @@ It takes a single bool as an argument, but by default there is no "gravity"
     end
     
     def collision(target_one, target_two)
-      if distance(@sprites[target_one].x, @sprites[target_one].y, @sprites[target_two].x, @sprites[target_two].y) < 50
-        return true
-      end
-      return false
-      
+    	if @sprites[target_two].x + @sprites[target_two].bounding_width < @sprites[target_one].x
+    		return false
+		end
+		if @sprites[target_two].x > @sprites[target_one].x + @sprites[target_one].bounding_width
+			return false
+		end
+		
+		if @sprites[target_two].y + @sprites[target_two].bounding_height < @sprites[target_one].y
+			return false
+		end
+		if @sprites[target_two].y > @sprites[target_one].y + @sprites[target_one].bounding_height
+			return false
+		end
+		
+		return true
+		
     end
     
     
