@@ -108,7 +108,7 @@ It takes a single bool as an argument, but by default there is no "gravity"
       @sprites.each { |main_name, main_sprite|
         @sprites.each { |name, sprite|
           if main_name != name
-            if distance(main_sprite.x, main_sprite.y, sprite.x, sprite.y) < 50 
+            if collision(main_sprite, sprite)
               # puts "#{main_name} and #{name} collided!"
               return [main_name, name]
             else
