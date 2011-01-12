@@ -91,6 +91,9 @@ It takes a single bool as an argument, but by default there is no "gravity"
       if button_down? Gosu::Button::KbDown
         down_button
       end
+      if button_down? Gosu::Button::KbSpace then
+      	space_bar
+  	end
 
     end
     
@@ -157,6 +160,10 @@ It takes a single bool as an argument, but by default there is no "gravity"
     def left_button
       raise NotImplementError, 'You need to make sure you implement the left_button method'
     end
+    
+    def space_bar
+    	raise NotImplementError, 'You need to make sure you implement the space_bar method'
+	end
     
   end
 
