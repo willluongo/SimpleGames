@@ -37,11 +37,13 @@ class MyScreen < Screen
   	
   def draw
     super
-    @font.draw("Lives: #{@lives}\nScore: #{@score}", 10, 10, 2, 1.0, 1.0, 0xffffffff)
+    @font.draw("Lives: #{@lives}", 10, 10, 2, 1.0, 1.0, 0xffffffff)
+    @font.draw("Score: #{@score}", 10, 50, 2, 1.0, 1.0, 0xffffffff)
     if @lives == 0
-      @font.draw("GAME OVER", 100, 100, 2, 1.0, 1.0, 0xffffffff)
+      @font.draw("GAME OVER", 100, 100, 2, 3.0, 3.0, 0xffff0000)
     end
   end
+  
   def update
     super
     if @sprites[:asteroid].x > -10
@@ -74,14 +76,14 @@ class MyScreen < Screen
     if @bullet_active
     	@sprites[:bullet].x += 10
 	end
-	if @sprites[:bullet].x >= 810
+	if @sprites[:bullet].x >= 1810
 		@bullet_active = false
 	end
     
   end
 end
 screen = MyScreen.new
-Sprite.new(:ship, "forward.png", screen, 0, 0, 50, 50)
+Sprite.new(:ship, "forward.png", screen, 0, 0, 50)
 Sprite.new(:asteroid, "asteroid.png", screen,800,rand(600))
 Sprite.new(:bullet, "bullet.png", screen, -10, -10)
 @bullet_active = false
